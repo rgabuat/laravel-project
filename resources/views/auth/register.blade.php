@@ -1,135 +1,166 @@
-@extends('layouts.app')
+@extends('layouts.guest')
+
 
 @section('content')
-<div class="container mx-auto my-4">
-<div class="flex h-screen justify-center items-center">
-    <div class="lg:w-1/4 md:w-1/2 xs:w-full mx-auto">
+<div class="login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="../../index2.html"><b>Admin</b>LTE</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
             @if (session('status'))
-                <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
-                    <span class="font-medium">Success !</span>{{ session('status') }}.
+                <div class="bg-danger text-center text-white mb-3">
+                    {{ session('status') }}
                 </div>
             @endif
-        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{ route('register') }}" method="post">
-            @csrf
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="Company">
-                    Company
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline  @error('company') border-red-500 @enderror" id="company" name="company" type="text" value="{{ old('company') }}" placeholder="Company">
-                @error('company')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{ $message }}
-                    </div>
-                @enderror
+      <form action="{{ route('register') }}" method="post">
+          @csrf
+        <div class="input-group mb-3">
+          <input type="text" name="company" class="form-control @error('company') is-invalid @enderror" value="{{ old('company') }}" placeholder="Company">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="First Name">
-                    First Name
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('firstname') border-red-500 @enderror" value="{{old('firstname')}}" id="firstname" name="firstname" type="text" placeholder="Firstname">
-                @error('firstname')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{ $message }}
-                    </div>
-                @enderror
+          </div>
+            @error('company')
+                <span class="error invalid-feedback"> {{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="input-group mb-3">
+          <input type="text" name="firstname" class="form-control @error('firstname') is-invalid @enderror" placeholder="Firstname">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="Last Name">
-                    Last Name
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('lastname') border-red-500 @enderror" value="{{old('lastname')}}" id="lastname" name="lastname" type="text" placeholder="Lastname">
-                @error('lastname')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{ $message }}
-                    </div>
-                @enderror
+          </div>
+            @error('firstname')
+                <span class="error invalid-feedback"> {{ $message }}</span>
+            @enderror
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" name="lastname" class="form-control @error('lastname') is-invalid @enderror" placeholder="Lastname">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="Address">
-                    Address
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('address') border-red-500 @enderror" value="{{old('address')}}" id="address" name="address" type="text" placeholder="Address">
-                @error('address')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{ $message }}
-                    </div>
-                @enderror
+          </div>
+            @error('lastname')
+                <span class="error invalid-feedback"> {{ $message }}</span>
+            @enderror
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" placeholder="Address">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="Registered number">
-                    Registered number
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('reg_number') border-red-500 @enderror" value="{{old('reg_number')}}"  id="reg_number" name="reg_number" type="tel" placeholder="">
-                @error('reg_number')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{ $message }}
-                    </div>
-                @enderror
+          </div>
+            @error('address')
+                <span class="error invalid-feedback"> {{ $message }}</span>
+            @enderror
+        </div>
+        <div class="input-group mb-3">
+          <input type="tel" name="reg_number" class="form-control @error('reg_number') is-invalid @enderror" placeholder="Registered Number">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="Phone number">
-                    Phone number
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('phone_number') border-red-500 @enderror" value="{{old('phone_number')}}" id="phone_number" name="phone_number" type="text" placeholder="">
-                @error('phone_number')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{ $message }}
-                    </div>
-                @enderror
+          </div>
+            @error('reg_number')
+                <span class="error invalid-feedback"> {{ $message }}</span>
+            @enderror
+        </div>
+        <div class="input-group mb-3">
+          <input type="tel" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" placeholder="Phone Number">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                    Username
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('username') border-red-500 @enderror"  id="username" value="{{ old('username') }}" name="username" type="text" placeholder="Username">
-                @error('username')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{ $message }}
-                    </div>
-                @enderror
+          </div>
+            @error('phone_number')
+                <span class="error invalid-feedback"> {{ $message }}</span>
+            @enderror
+        </div>
+        <!-- <div class="input-group mb-3">
+          <input type="tel" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" placeholder="Phone Number">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-                    Email
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('email') border-red-500 @enderror" value="{{ old('email') }}" name="email" id="email" type="email" placeholder="Email">
-                @error('email')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{ $message }}
-                    </div>
-                @enderror
+          </div>
+            @error('phone_number')
+                <span class="error invalid-feedback"> {{ $message }}</span>
+            @enderror
+        </div> -->
+        <div class="input-group mb-3">
+          <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Username">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                    Password
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline @error('password') border-red-500 @enderror" id="password" name="password" type="password" placeholder="******************">
-                @error('password')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{ $message }}
-                    </div>
-                @enderror
+          </div>
+            @error('username')
+                <span class="error invalid-feedback"> {{ $message }}</span>
+            @enderror
+        </div>
+        <div class="input-group mb-3">
+          <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                    Confirm Password
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline @error('password_confirmation') border-red-500 @enderror" id="password_confirmation" name="password_confirmation" type="password" placeholder="******************">
-                @error('password_confirmation')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{ $message }}
-                    </div>
-                @enderror
+          </div>
+            @error('email')
+                <span class="error invalid-feedback"> {{ $message }}</span>
+            @enderror
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="******">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
-            <div class="flex items-center justify-between">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                REGISTER
-            </button>
-            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="{{route('login')}}">
-                Already have account?
-            </a>
+          </div>
+            @error('password')
+                <span class="error invalid-feedback"> {{ $message }}</span>
+            @enderror
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="******">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
-        </form>
+          </div>
+            @error('password_confirmation')
+                <span class="error invalid-feedback"> {{ $message }}</span>
+            @enderror
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block">REGISTER NOW</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <!-- /.social-auth-links -->
+
+      <p class="mb-1">
+        <a href="forgot-password.html">I forgot my password</a>
+      </p>
+      <p class="mb-0">
+        <a href="register.html" class="text-center">Login now</a>
+      </p>
     </div>
+    <!-- /.login-card-body -->
   </div>
+</div>
+<!-- /.login-box -->
+</div>
 @endsection
